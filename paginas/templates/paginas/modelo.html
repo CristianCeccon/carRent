@@ -24,6 +24,7 @@
                 <a class="btn btn-primary" href="#signup">Sign Up</a>
             </div>
         </nav>
+
         <!-- Masthead-->
         <header class="masthead">
             <div class="container position-relative">
@@ -72,9 +73,12 @@
                 </div>
             </div>
         </header>
+
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
             <div class="container">
+
+                {% block conteudo %}
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
@@ -98,6 +102,9 @@
                         </div>
                     </div>
                 </div>
+                {% endblock %}
+
+                
             </div>
         </section>
         <!-- Image Showcases-->
