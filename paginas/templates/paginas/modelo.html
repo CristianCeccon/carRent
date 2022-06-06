@@ -216,9 +216,12 @@
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+
+            {% if request.user.is_authenticated %}
+
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6>Cristian Ceccon</h6>
+              <span>Vrum</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -261,7 +264,13 @@
               </a>
             </li>
 
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Entrar</a>
+            </li>
+            {% endif %}
           </ul><!-- End Profile Dropdown Items -->
+          
         </li><!-- End Profile Nav -->
 
       </ul>
