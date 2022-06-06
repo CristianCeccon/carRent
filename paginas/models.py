@@ -59,3 +59,5 @@ class Reserva(models.Model):
     inicio = models.DateField(verbose_name="Data da reserva do veiculo")
     fim = models.DateField(verbose_name="Data da entrega do veiculo")
 
+class Usuario():
+  name = models.CharField(max_length=50, verbose_name="Qual é o nome do veiculo ?", help_text="Exemplo: Fulado de tal")

@@ -4,7 +4,7 @@ from django.views.generic import TemplateView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
-from .models import Cidade, Funcionario
+from .models import Cidade, Funcionario, Usuario
 
 # Create your views here.
 
@@ -38,7 +38,10 @@ class FuncionarioUpdate(UpdateView):
 
 
 class Index(TemplateView):
-    template_name = "carRent/static/index.html"
+    template_name = "paginas/index.html"
+
+class Perfil(TemplateView):
+    template_name = "paginas/perfil.html"
 
 
 class FuncionarioDelete(DeleteView):
@@ -56,3 +59,7 @@ class CidadeDelete(DeleteView):
 class FuncionarioList(ListView):
     model = Funcionario
     template_name = 'paginas/listas/pessoas.html'
+
+class UsuarioCreate(CreateView):
+    model = Usuario
+    template_name = 'static/users-profile.html'
