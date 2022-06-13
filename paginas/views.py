@@ -5,66 +5,70 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from braces.views import GroupRequiredMixin
 
 from .models import Cidade, Funcionario, Usuario
 
 # Create your views here.
 
 
-class CidadeCreate(LoginRequiredMixin, CreateView):
+class CidadeCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     model = Cidade
     fields = ['nome', 'estado']
     template_name = 'paginas/form.html'
     success_url = reverse_lazy('index')
 
 
-class FuncionarioCreate(LoginRequiredMixin, CreateView):
+class FuncionarioCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     model = Funcionario
+    group_required = u"Administrador"
     fields = ['nome_completo', 'email','nascimento' ]
     template_name = 'paginas/form.html'
     success_url = reverse_lazy('listar-funcionario')
     #login_url = reverse_lazy('login')
 
 
-class CidadeUpdate(LoginRequiredMixin, UpdateView):
+class CidadeUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Cidade
     fields = ['nome', 'estado']
     template_name = 'paginas/form.html'
     success_url = reverse_lazy('index')
 
 
-class FuncionarioUpdate(LoginRequiredMixin, UpdateView):
+class FuncionarioUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Funcionario
     fields = ['nome_completo', 'email', 'nascimento', 'contato']
     template_name = 'paginas/form.html'
     success_url = reverse_lazy('listar-funcionario')
 
 
-class Index(LoginRequiredMixin, TemplateView):
+class Index(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "paginas/index.html"
 
 
-class Perfil(LoginRequiredMixin, TemplateView):
+class Perfil(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "paginas/perfil.html"
 
 
-class FuncionarioDelete(LoginRequiredMixin, DeleteView):
+class FuncionarioDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Funcionario
+    group_required = u"Administrador"
     template_name = 'paginas/form-delete.html'
     sucess_url = reverse_lazy('listar-funcionario')
 
 
-class CidadeDelete(LoginRequiredMixin, DeleteView):
+class CidadeDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Cidade
     template_name = 'paginas/form-delete.html'
     success_url = reverse_lazy('index')
 
 
-class FuncionarioList(LoginRequiredMixin, ListView):
+class FuncionarioList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     model = Funcionario
     template_name = 'paginas/listas/pessoas.html'
 
 
-class UsuarioCreate(LoginRequiredMixin, CreateView):
+class UsuarioCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     model = Usuario
+    group_required = u"Usuario"
     template_name = 'static/users-profile.html'
